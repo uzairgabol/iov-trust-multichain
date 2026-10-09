@@ -1,0 +1,27 @@
+flowchart TB
+  subgraph CS["Central services plane"]
+    TA["Traffic Authority (TA)<br/>registers vehicles, assigns TV,<br/>deploys smart contract"]
+    CA["Certificate Authority (CA)<br/>pseudonym certificates"]
+    RA["Regional Authorities (RA)<br/>deploy RSUs, own a shard"]
+  end
+  subgraph G["Global blockchain - Ethereum, PoW (geth)"]
+    SC["Smart contract (Solidity)<br/>reportSuspicion · analyseReports · claimReward<br/>registers PTR, SSR, VR, VISR, CR · RevocationList"]
+  end
+  subgraph EP["RSU / edge plane - shards, authority consensus"]
+    R1["RSU 1<br/>miner / validator"]
+    R2["RSU 2<br/>miner / validator"]
+    R3["RSU 3<br/>miner / validator"]
+  end
+  subgraph VP["Vehicular plane"]
+    V1["Vehicle (OBU)<br/>light node"]
+    V2["Vehicle"]
+    V3["Misbehaving vehicle"]
+  end
+  TA --> SC
+  CA --> G
+  RA --> EP
+  EP <--> G
+  V1 -- "reportSuspicion / claimReward (tx)" --> R1
+  V2 --> R2
+  V3 -. "fake CAM/DENM" .-> V1
+  V3 -. "fake CAM/DENM" .-> V2

@@ -1,0 +1,9 @@
+flowchart TD
+  A["multichain-util create iovchain"] --> B["edit params.dat<br/>block time 2 s, ports 7447/7446,<br/>mining-diversity 0.5, mine-empty-rounds -1"]
+  B --> C["multichaind iovchain (TA)<br/>genesis block"]
+  C --> D["multichaind iovchain@127.0.0.1:7447<br/>for rsu1..3 (first run asks for connect)"]
+  D --> E["TA: grant RSU connect,send,receive,mine"]
+  E --> F["restart RSU nodes -> P2P mesh"]
+  F --> G["TA: create 5 closed streams,<br/>issue CREDIT (open asset)"]
+  G --> H["all nodes subscribe;<br/>TA grants RSUs verdicts.write"]
+  H --> I["per vehicle: getnewaddress on RSU,<br/>TA grants send,receive,reports.write,<br/>publishes registry + trust (TV0 = 1)"]

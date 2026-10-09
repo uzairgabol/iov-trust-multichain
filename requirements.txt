@@ -1,0 +1,2 @@
+# core scripts (network, trust_contract, detection, simulate, benchmark) use only the Python standard library
+matplotlib>=3.7   # plot_results.py only

@@ -1,0 +1,4 @@
+ta    height=11     peers=6 miner 1NnbuhuzTmm8hyf1WhqGtkTdLjjwAtpsEy1Zgx
+rsu1  height=10     peers=6 miner 1R7sKS2j5oWZZz9RGBG7DX4EF4TKDr4eyhzeYZ
+rsu2  height=10     peers=6 miner 1Z9mjjDH1hHo2HBpkFJSK2D6Sz6Ep842EsoNyy
+rsu3  height=11     peers=6 miner 1Fn59jYuYbugVXn8A2cFeRpi9GBRKh5NK77gjA

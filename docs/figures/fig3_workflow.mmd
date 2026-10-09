@@ -1,0 +1,17 @@
+flowchart TB
+  subgraph VS["Vehicle side"]
+    direction LR
+    A(["Road event"]) --> B["CAM beacons<br/>received"] --> C{"Plausibility<br/>checks pass?"}
+    C -- yes --> B
+    C -- no --> D["reportSuspicion<br/>(Alg. 1 checks)"] --> E["publishfrom<br/>reports stream"]
+  end
+  subgraph CS["Chain side (RSU + TA)"]
+    direction LR
+    F["RSUs mine block<br/>(round-robin)"] --> G["analyseReports<br/>(Alg. 2)"] --> H{"count >= 4 and<br/>score > count/2?"}
+    H -- no --> I["no punishment"]
+    H -- yes --> J["TA: TV - 1"] --> K{"TV < 0?"}
+    K -- no --> L["soft block:<br/>send from h+30"]
+    K -- yes --> M["hard revoke"]
+    H -- yes --> N["claimReward (Alg. 3)<br/>+5 CREDIT, +2 alarmer"]
+  end
+  VS --> CS

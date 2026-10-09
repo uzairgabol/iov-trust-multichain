@@ -1,0 +1,21 @@
+sequenceDiagram
+  participant V as Vehicle (OBU)
+  participant R as RSU node
+  participant C as MultiChain (iovchain)
+  participant T as TA node
+  T->>C: grant send,receive + reports.write (configureVEH)
+  T->>C: publish trust {tv: 1, active}
+  V->>V: plausibility checks on beacons
+  V->>R: reportSuspicion(session, suspect)
+  R->>C: publishfrom vehicle -> reports
+  C-->>R: block mined (round-robin)
+  R->>C: analyseReports -> publish verdicts
+  T->>C: read verdict, re-tally
+  alt TV - 1 >= 0
+    T->>C: grant send from height+30 (soft block)
+  else TV - 1 < 0
+    T->>C: revoke send,receive,reports.write
+  end
+  T->>C: publish trust {tv, status}
+  V->>T: claimReward(session)
+  T->>C: sendasset CREDIT 5 (+2 alarmer), publish claims

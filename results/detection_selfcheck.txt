@@ -1,0 +1,3 @@
+V01 -> {'V10': ['position', 'speed'], 'V11': ['frequency'], 'V09': ['position', 'range']}
+V02 -> {'V10': ['position', 'speed'], 'V11': ['frequency'], 'V09': ['position', 'range']}
+detection self-check passed: 8/8 honest vehicles flagged exactly ['V09', 'V10', 'V11']

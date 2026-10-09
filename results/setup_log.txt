@@ -1,0 +1,21 @@
+[1] creating chain iovchain
+[2] starting TA (genesis/admin) node
+[3] joining RSU nodes and granting connect,send,receive,mine
+    rsu1 1R7sKS2j5oWZZz9RGBG7DX4EF4TKDr4eyhzeYZ
+    rsu2 1Z9mjjDH1hHo2HBpkFJSK2D6Sz6Ep842EsoNyy
+    rsu3 1Fn59jYuYbugVXn8A2cFeRpi9GBRKh5NK77gjA
+[4] creating closed streams ['registry', 'reports', 'verdicts', 'trust', 'claims'] and CREDIT asset
+[5] registering vehicles (TA = configureVEH)
+    V01 12rmdPX9qCXz5coKmTL56ffmbH8hrQL15q8nAD via rsu1
+    V02 15H544CYneHHFcN4HsH8jnbjJuuZNfNU4nTiST via rsu1
+    V03 1T6p68ctkEnB1sGzZ4zng8jFDhQFNYDsuEgmiv via rsu1
+    V04 1SsPhTNezwhtf7knUid7VwWDDk88h8WoD5Vcdn via rsu1
+    V05 1TVeviKubz88aMnXdKBd8txkswH38bwa566DRZ via rsu2
+    V06 1KiuQRL7RPapuPWV74EUyARmPwFQpFCQidf4oV via rsu2
+    V07 1GNXnESupYqLdSw9qLBSdEgZxZaijPY52tSSqt via rsu2
+    V08 1VgVe8Xjq3r4i6YpwLSSkM7YycBVY9jaZaKmaA via rsu2
+    V09 12fqMeX3CU9ejS3MvxmGFQ7LRfZnfhR8rh8KxW via rsu3
+    V10 1QEiCYXzD6dhsARDpWQdxcmb9hJyzqqGpm3XE9 via rsu3
+    V11 1BuhFbvGbdjZyX9PG6VenZAc85frmYR34sW3so via rsu3
+    V12 1Wy3wUvuYxbLZRDpHJCWQBFMBeZjPbGX9rhuk8 via rsu3
+done. state saved to network.json

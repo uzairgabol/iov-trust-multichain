@@ -1,0 +1,26 @@
+flowchart TB
+  subgraph CH["MultiChain chain: iovchain (permissioned, round-robin mining, mining-diversity 0.5, 2 s blocks)"]
+    direction LR
+    S1[("registry<br/>VR identity")]
+    S2[("reports<br/>PTR / VISR")]
+    S3[("verdicts<br/>SSR")]
+    S4[("trust<br/>TV, status, blocked_until")]
+    S5[("claims<br/>CR")]
+    A1{{"asset CREDIT<br/>credit score"}}
+  end
+  TA["TA node (genesis)<br/>admin, issue, mine<br/>writes registry, trust, claims<br/>grant / revoke"]
+  R1["RSU1 node<br/>connect, send, receive, mine<br/>verdicts.write"]
+  R2["RSU2 node<br/>mine, verdicts.write"]
+  R3["RSU3 node<br/>mine, verdicts.write"]
+  V["Vehicles V01-V12<br/>addresses in RSU wallets<br/>send, receive, reports.write"]
+  D["detection.py<br/>plausibility checks<br/>(position, speed, range, frequency)"]
+  D --> V
+  V -- "publishfrom reports" --> S2
+  R1 -- "analyseReports -> publish" --> S3
+  TA -- "enforce: grant send from future block / revoke" --> S4
+  TA -- "claimReward: sendasset" --> A1
+  TA --> S1
+  TA --> S5
+  TA <-. "P2P :7447" .-> R1
+  R1 <-.-> R2
+  R2 <-.-> R3

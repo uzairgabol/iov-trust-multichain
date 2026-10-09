@@ -1,0 +1,4 @@
+nodes/
+network.json
+__pycache__/
+docs/figures/puppeteer.json

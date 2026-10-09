@@ -1,0 +1,86 @@
+== IoV adaptive trust on MultiChain - scenario run 124751 ==
+chain=iovchain block_time=2s soft_block=30 blocks TV0=1
+  vehicle rsu     TV  status    CREDIT
+  V01     rsu1     1  active         0
+  V02     rsu1     1  active         0
+  V03     rsu1     1  active         0
+  V04     rsu1     1  active         0
+  V05     rsu2     1  active         0
+  V06     rsu2     1  active         0
+  V07     rsu2     1  active         0
+  V08     rsu2     1  active         0
+  V09     rsu3     1  active         0
+  V10     rsu3     1  active         0
+  V11     rsu3     1  active         0
+  V12     rsu3     1  active         0
+
+== Event E1-124751: local plausibility detection ==
+  V01 detected {'V12': ['position', 'speed'], 'V11': ['position', 'range']}
+  V05 detected {'V12': ['position', 'speed'], 'V11': ['position', 'range']}
+  19 reportSuspicion transactions confirmed
+  RSU1 analyseReports: count=10 scores={'V11': 9, 'V12': 9, 'V03': 1} misbehaving=['V11', 'V12'] alarmer=V01  tx bb60c0601ec21b19..
+  TA enforce: V11 TV=0 -> blocked
+  TA enforce: V12 TV=0 -> blocked
+  on-chain send permission now:
+    V11 send valid from block 44 (current 15)
+    V12 send valid from block 44 (current 15)
+  V12 tries to report while blocked:
+    contract check: You are blocked for 1 minute
+    bypassing the client checks: REJECTED by chain: [-704] from-address doesn't have send permission
+
+  claims for E1:
+  V01 claimReward: +7 CREDIT, TV+1
+  V02 claimReward: +5 CREDIT, TV+1
+  V03 claimReward: +5 CREDIT, TV+1
+  V04 claimReward: +5 CREDIT, TV+1
+  V05 claimReward: +5 CREDIT, TV+1
+  V06 claimReward: +5 CREDIT, TV+1
+  V07 claimReward: +5 CREDIT, TV+1
+  V08 claimReward: +5 CREDIT, TV+1
+  V09 claimReward: +5 CREDIT, TV+1
+  V10 claimReward refused: No verified report in this session
+
+== Event E1c-124751: 3 colluders accuse honest V05 ==
+  3 reportSuspicion transactions confirmed
+  RSU1 analyseReports: count=3 scores={'V05': 3} misbehaving=[] alarmer=V08  tx ece35132c1e2e9db..
+  -> no punishment: fewer than 4 participants (paper's anti-51% rule)
+
+== Event E2-124751: V11 keeps attacking, V12 now honest but still blocked ==
+  V12 -> V11: refused (You are blocked for 1 minute)
+  10 reportSuspicion transactions confirmed
+  RSU1 analyseReports: count=10 scores={'V11': 10} misbehaving=['V11'] alarmer=V05  tx 7200c9b47496697a..
+  TA enforce: V11 TV=-1 -> revoked
+  V01 claimReward: +5 CREDIT, TV+1
+  V02 claimReward: +5 CREDIT, TV+1
+  V03 claimReward: +5 CREDIT, TV+1
+  V04 claimReward: +5 CREDIT, TV+1
+  V05 claimReward: +7 CREDIT, TV+1
+  V06 claimReward: +5 CREDIT, TV+1
+  V07 claimReward: +5 CREDIT, TV+1
+  V08 claimReward: +5 CREDIT, TV+1
+  V09 claimReward: +5 CREDIT, TV+1
+  V10 claimReward: +5 CREDIT, TV+1
+
+== waiting for V12's soft block to expire at block 44 ==
+  height 44: V12 status=active, publish -> c4e80c55bb37ba2aee55..
+  V11 status=revoked, publish -> REJECTED by chain: [-704] Publishing in this stream is not allowed from this address
+
+== TA reinstates V11 (only the TA can) ==
+  V11 status=active TV=0
+
+== final trust state ==
+  vehicle rsu     TV  status    CREDIT
+  V01     rsu1     3  active        12
+  V02     rsu1     3  active        10
+  V03     rsu1     3  active        10
+  V04     rsu1     3  active        10
+  V05     rsu2     3  active        12
+  V06     rsu2     3  active        10
+  V07     rsu2     3  active        10
+  V08     rsu2     3  active        10
+  V09     rsu3     3  active        10
+  V10     rsu3     2  active         5
+  V11     rsu3     0  active         0
+  V12     rsu3     0  active         0
+
+height=45  reports=33  verdicts=3  trust updates=35

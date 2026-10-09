@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> Active: TA registers (TV0 = 1)
+  Active --> Active: verified report -> TV+1, +5 CREDIT
+  Active --> Blocked: convicted and TV-1 >= 0
+  Blocked --> Active: 30 blocks (~1 min) pass
+  Blocked --> Revoked: convicted again and TV-1 < 0
+  Active --> Revoked: convicted and TV-1 < 0
+  Revoked --> Active: TA reinstates (TV = 0)
